@@ -1,10 +1,10 @@
 # 2048 Comand Line
 
-2046 game in the comand line
+2048 game in the comand line
 
 ## How to play:
 
-Press w a s and d keys to swipe the blocks.
+Press ***w*** ***a*** ***s*** and ***d*** keys to swipe the blocks.
 You win when you get a 2048 block.
 
 On macOS you can press "*comand +*" or "*comand -*" to increse/decrese terminal windows size.
