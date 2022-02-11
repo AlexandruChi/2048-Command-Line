@@ -7,7 +7,7 @@
 Press ***w*** ***a*** ***s*** and ***d*** keys to swipe the blocks.
 You win when you get a 2048 block.
 
-On macOS you can press "*comand +*" or "*comand -*" to increse/decrese terminal windows size.
+On macOS you can press "***comand +***" or "***comand -***" to increse/decrese terminal windows size.
 
 ### Blocks are combined from the directon you swite:
 1. If you swipe right ***(d)***, the block are combined from left to right.
