@@ -165,5 +165,6 @@ int main(int argc, const char * argv[]) {
     game=0;
     printf("Press enter to close ... ");
     string=getNrString(0);
+    system("clear");
     return 0;
 }
