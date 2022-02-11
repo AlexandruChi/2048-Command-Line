@@ -163,7 +163,7 @@ int main(int argc, const char * argv[]) {
     }
     free(game);
     game=0;
-    printf("Press enter to close ...");
+    printf("Press enter to close ... ");
     string=getNrString(0);
     return 0;
 }
