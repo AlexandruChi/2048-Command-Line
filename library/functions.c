@@ -126,48 +126,92 @@ _Bool canMoveDown(int **map) {
 }
 
 void moveUp(int **map) {
-    int i, j;
-    for (i=3; i>0; i--) {
-        for (j=0; j<4; j++) {
-            if (!map[i-1][j] || map[i-1][j]==map[i][j]) {
-                map[i-1][j]+=map[i][j];
-                map[i][j]=0;
+    int i, j, a, n;
+    for (a=0; a<=2; a++) {
+        for (i=1; i<4; i++) {
+            for (j=0; j<4; j++) {
+                if (a!=1) {
+                    n=i;
+                    while (n>0 && !map[n-1][j]) {
+                        map[n-1][j]=map[n][j];
+                        map[n][j]=0;
+                        n--;
+                    }
+                } else {
+                    if (map[i-1][j]==map[i][j]) {
+                        map[i-1][j]*=2;
+                        map[i][j]=0;
+                    }
+                }
             }
         }
     }
 }
 
 void moveDown(int **map) {
-    int i, j;
-    for (i=0; i<3; i++) {
-        for (j=0; j<4; j++) {
-            if (!map[i+1][j] || map[i+1][j]==map[i][j]) {
-                map[i+1][j]+=map[i][j];
-                map[i][j]=0;
+    int i, j, a, n;
+    for (a=0; a<=2; a++) {
+        for (i=2; i>=0; i--) {
+            for (j=0; j<4; j++) {
+                if (a!=1) {
+                    n=i;
+                    while (n<3 && !map[n+1][j]) {
+                        map[n+1][j]=map[n][j];
+                        map[n][j]=0;
+                        n++;
+                    }
+                } else {
+                    if (map[i+1][j]==map[i][j]) {
+                        map[i+1][j]*=2;
+                        map[i][j]=0;
+                    }
+                }
             }
         }
     }
 }
 
 void moveLeft(int **map) {
-    int i, j;
-    for (j=3; j>0; j--) {
-        for (i=0; i<4; i++) {
-            if (!map[i][j-1] || map[i][j-1]==map[i][j]) {
-                map[i][j-1]+=map[i][j];
-                map[i][j]=0;
+    int i, j, a, n;
+    for (a=0; a<=2; a++) {
+        for (j=1; j<4; j++) {
+            for (i=0; i<4; i++) {
+                if (a!=1) {
+                    n=j;
+                    while (n>0 && !map[i][n-1]) {
+                        map[i][n-1]=map[i][n];
+                        map[i][n]=0;
+                        n--;
+                    }
+                } else {
+                    if (map[i][j-1]==map[i][j]) {
+                        map[i][j-1]*=2;
+                        map[i][j]=0;
+                    }
+                }
             }
         }
     }
 }
 
 void moveRight(int **map) {
-    int i, j;
-    for (j=0; j<3; j++) {
-        for (i=0; i<4; i++) {
-            if (!map[i][j+1] || map[i][j+1]==map[i][j]) {
-                map[i][j+1]+=map[i][j];
-                map[i][j]=0;
+    int i, j, a, n;
+    for (a=0; a<=2; a++) {
+        for (j=2; j>=0; j--) {
+            for (i=0; i<4; i++) {
+                if (a!=1) {
+                    n=j;
+                    while (n<3 && !map[i][n+1]) {
+                        map[i][n+1]=map[i][n];
+                        map[i][n]=0;
+                        n++;
+                    }
+                } else {
+                    if (map[i][j+1]==map[i][j]) {
+                        map[i][j+1]*=2;
+                        map[i][j]=0;
+                    }
+                }
             }
         }
     }

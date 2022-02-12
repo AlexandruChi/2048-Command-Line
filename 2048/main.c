@@ -8,7 +8,7 @@ int main(int argc, const char * argv[]) {
     int **game, i, j;
     char *move, value, *string;
     unsigned int randomSeed;
-    _Bool isRunning=1, isFull, canMove, win=0, start=1, ok, ok2, ok3;
+    _Bool isRunning=1, isFull, canMove, win=0, start=1, ok, ok2=0, ok3;
     game=(int**)malloc(4*sizeof(int*));
     if (!game) {
         fprintf(stderr, "\n\nInsuficient memory.\n\n");
@@ -43,42 +43,36 @@ int main(int argc, const char * argv[]) {
         if (win) {
             break;
         }
-        if (!isFull) {
+        if (!isFull && !ok2) {
             do {
                 i=rand()%4;
                 j=rand()%4;
             } while (game[i][j]);
             game[i][j]=2;
+            if (!(rand()%11)) {
+                game[i][j]*=2;
+            }
             if (start) {
                 do {
                     i=rand()%4;
                     j=rand()%4;
                 } while (game[i][j]);
                 game[i][j]=2;
+                if (!(rand()%11)) {
+                    game[i][j]*=2;
+                }
                 start=0;
             }
+        } else if (ok2) {
+            ok2=0;
         }
         canMove=canMoveAnywhere(game);
         if (canMove) {
             ok=1;
-            ok2=0;
             ok3=0;
             while (ok) {
                 system("clear");
                 printMap(game);
-                if (ok2) {
-                    printf("Cant't move ");
-                    if (!canMoveUp(game)) {
-                        printf("up");
-                    } else if (!canMoveDown(game)) {
-                        printf("down.");
-                    } else if (!canMoveLeft(game)) {
-                        printf("left.");
-                    } else if (!canMoveRight(game)) {
-                        printf("right.");
-                    }
-                    printf("\n\n");
-                }
                 if (ok3) {
                     printf("Move is not valid\n\n");
                 }
@@ -93,10 +87,9 @@ int main(int argc, const char * argv[]) {
                     case 'W':
                         if (canMoveUp(game)) {
                             ok=0;
+                            ok2=0;
                             ok3=0;
-                            while (canMoveUp(game)) {
-                                moveUp(game);
-                            }
+                            moveUp(game);
                         } else {
                             ok2=1;
                         }
@@ -105,10 +98,9 @@ int main(int argc, const char * argv[]) {
                     case 'S':
                         if (canMoveDown(game)) {
                             ok=0;
+                            ok2=0;
                             ok3=0;
-                            while (canMoveDown(game)) {
-                                moveDown(game);
-                            }
+                            moveDown(game);
                         } else {
                             ok2=1;
                         }
@@ -117,10 +109,9 @@ int main(int argc, const char * argv[]) {
                     case 'A':
                         if (canMoveLeft(game)) {
                             ok=0;
+                            ok2=0;
                             ok3=0;
-                            while (canMoveLeft(game)) {
-                                moveLeft(game);
-                            }
+                            moveLeft(game);
                         } else {
                             ok2=1;
                         }
@@ -129,10 +120,9 @@ int main(int argc, const char * argv[]) {
                     case 'D':
                         if (canMoveRight(game)) {
                             ok=0;
+                            ok2=0;
                             ok3=0;
-                            while (canMoveRight(game)) {
-                                moveRight(game);
-                            }
+                            moveRight(game);
                         } else {
                             ok2=1;
                         }
