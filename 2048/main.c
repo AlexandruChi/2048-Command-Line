@@ -4,6 +4,12 @@
 #include <time.h>
 #include "../library/functions.h"
 
+#if (_WIN16 || _Win32)
+#define clear "cls"
+#else
+#define clear "clear"
+#endif
+
 int main(int argc, const char * argv[]) {
     int **game, i, j;
     char *move, value, *string;
@@ -71,7 +77,7 @@ int main(int argc, const char * argv[]) {
             ok=1;
             ok3=0;
             while (ok) {
-                system("clear");
+                system(clear);
                 printMap(game);
                 if (ok3) {
                     printf("Move is not valid\n\n");
@@ -140,7 +146,7 @@ int main(int argc, const char * argv[]) {
             isRunning=0;
         }
     }
-    system("clear");
+    system(clear);
     if (win) {
         printf("\n       You won\n");
     } else {
@@ -155,6 +161,6 @@ int main(int argc, const char * argv[]) {
     game=0;
     printf("Press enter to close ... ");
     string=getNrString(0);
-    system("clear");
+    system(clear);
     return 0;
 }
