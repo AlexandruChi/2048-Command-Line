@@ -4,7 +4,7 @@
 #include <time.h>
 #include "../library/functions.h"
 
-#if (_WIN16 || _Win32)
+#if (_WIN16 || _WIN32)
 #define clear "cls"
 #else
 #define clear "clear"
